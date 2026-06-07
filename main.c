@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "utils/help.h"
+
 int main(int argc, char *argv[]) {
 
     char input[32];
@@ -13,10 +15,13 @@ int main(int argc, char *argv[]) {
         fgets(input, sizeof(input), stdin);
         
         if (!strcmp(input, "help\n") == true) {
-            printf("\nhelp - this message.\nexit- exit to the shell.\nlaunch <model.gguf> - launch model.\n\n");
+            help();
         }
         else if (!strcmp(input, "exit\n") == true) {
             printf("OK\n");
+        }
+        else {
+            printf("Command not found. type \"help\" for help.\n");
         }
     }
 }
