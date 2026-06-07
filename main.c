@@ -7,12 +7,14 @@
 
 int main(int argc, char *argv[]) {
 
-    char input[32];
+    char input[256];
 
     printf("Welcome to BareMind-shell\n\nType \"help\" for help.\n\n");
 
     while (1) {
         printf("~$: ");
+        fflush(stdout);
+        
         fgets(input, sizeof(input), stdin);
         
         if (!strcmp(input, "help\n") == true) {
@@ -23,7 +25,9 @@ int main(int argc, char *argv[]) {
             exit(0);
         }
         else {
-            printf("Command not found. type \"help\" for help.\n");
+            if (!strcmp(input, "\n") == false) {
+                printf("Command not found. type \"help\" for help.\n");
+            }
         }
     }
 }
