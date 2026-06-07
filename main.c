@@ -5,6 +5,8 @@
 
 #include "utils/help.h"
 
+#include "shell/tokenization.h"
+
 int main(int argc, char *argv[]) {
 
     char input[256];
@@ -27,6 +29,7 @@ int main(int argc, char *argv[]) {
         else {
             if (!strcmp(input, "\n") == false) {
                 printf("Command not found. type \"help\" for help.\n");
+                tokenization(input);
             }
         }
     }
