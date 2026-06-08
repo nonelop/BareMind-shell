@@ -2,8 +2,11 @@
 #include <string.h>
 #include <stdio.h>
 
-char* tokenization(char* string) {
-    char* tokens[32] = {NULL};
+#define MAX_TOKENS 32
+
+char** tokenization(char* string) {
+    static char* tokens[MAX_TOKENS];
+    printf("%p\n", tokens);
     char* token = strtok(string, " ");
     tokens[0] = token;
 
@@ -14,10 +17,5 @@ char* tokenization(char* string) {
         i0++;
     }
 
-    for (int i1 = 0; i1 < 32; i1++) {
-        if (tokens[i1] != NULL) {
-            printf("%s\n", tokens[i1]);
-        }
-        else break;
-    }
+    return tokens;
 }

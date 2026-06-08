@@ -6,6 +6,7 @@
 #include "utils/help.h"
 
 #include "shell/tokenization.h"
+#include "shell/command_router.h"
 
 int main(int argc, char *argv[]) {
 
@@ -20,6 +21,11 @@ int main(int argc, char *argv[]) {
         fgets(input, sizeof(input), stdin);
         
         if (!strcmp(input, "help\n") == true) {
+            char** tokens;
+            tokens = tokenization(input);
+            
+            printf("%d", validation(tokens));
+
             help();
         }
         else if (!strcmp(input, "exit\n") == true) {
@@ -29,7 +35,11 @@ int main(int argc, char *argv[]) {
         else {
             if (!strcmp(input, "\n") == false) {
                 printf("Command not found. type \"help\" for help.\n");
-                tokenization(input);
+
+                char** tokens;
+                tokens = tokenization(input);
+
+                printf("%d", validation(tokens));
             }
         }
     }
