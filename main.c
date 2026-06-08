@@ -20,26 +20,15 @@ int main(int argc, char *argv[]) {
         
         fgets(input, sizeof(input), stdin);
         
-        if (!strcmp(input, "help\n") == true) {
-            char** tokens;
-            tokens = tokenization(input);
-            
-            printf("%d", validation(tokens));
+        char** tokens = tokenization(input);
 
-            help();
-        }
-        else if (!strcmp(input, "exit\n") == true) {
-            printf("Exit...\n");
-            exit(0);
+        int valid = validation(tokens);
+        if (valid == 1) {
+            router(tokens);
         }
         else {
-            if (!strcmp(input, "\n") == false) {
-                printf("Command not found. type \"help\" for help.\n");
-
-                char** tokens;
-                tokens = tokenization(input);
-
-                printf("%d", validation(tokens));
+            if (tokens[0][0] != NULL) {
+                printf("Command not found. Type \"help\" for help.\n");
             }
         }
     }

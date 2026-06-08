@@ -6,13 +6,22 @@
 
 char** tokenization(char* string) {
     static char* tokens[MAX_TOKENS];
-    printf("%p\n", tokens);
     char* token = strtok(string, " ");
+
+    if (token != NULL) {
+        token[strcspn(token, "\n")] = '\0';
+    }
+
     tokens[0] = token;
 
     int i0 = 1;
     while (token != NULL) {
         token = strtok(NULL, " ");
+
+        if (token != NULL) {
+            token[strcspn(token, "\n")] = '\0';
+        }
+
         tokens[i0] = token;
         i0++;
     }
