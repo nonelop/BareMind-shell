@@ -11,4 +11,7 @@ extern Model qwenV2_5B0_5;
 extern Model qwenV2_5B1_5;
 extern Model qwenV2_5B3_0;
 
+extern Model* models_list[];
+extern int models_count;
+
 #endif
