@@ -28,3 +28,7 @@ char** tokenization(char* string) {
 
     return tokens;
 }
+
+int startswith(char* s1, char* s2) {
+    return strncmp(s1, s2, strlen(s2)) == 0;
+}

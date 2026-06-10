@@ -2,5 +2,6 @@
 #define HELP_H
 
 int help();
+int help_get();
 
 #endif
