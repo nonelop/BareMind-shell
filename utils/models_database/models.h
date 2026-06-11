@@ -4,6 +4,8 @@
 typedef struct {
     char* short_name;
     char* full_name;
+    char* quantization;
+    int size; // in MB
     char* download_url;
 } Model;
 
