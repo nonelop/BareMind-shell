@@ -45,6 +45,13 @@ int get(char* tokens[], int tokens_count) {
                         printf("\n%s\n\n", model->full_name);
                         printf("MODEL SPECIFICATIONS\n[QUANT]: %s\n[SIZE]: %.2f%s\n\n", model->quantization, model_size, size_in);
 
+                        char input_buffer[32];
+                        printf("Are you sure you want to install this model? [y / n] ~$: ");
+                        fflush(stdout);
+                        scanf("%s", input_buffer);
+
+                        printf("%s\n", input_buffer);
+
                         operation_successful = 1;
                         is_exist = 1;
                     }

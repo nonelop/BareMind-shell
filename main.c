@@ -7,29 +7,35 @@
 
 #include "shell/tokenization.h"
 #include "shell/command_router.h"
+#include "shell/linenoise.h"
 
 int main(int argc, char *argv[]) {
 
-    char input[256];
-
     printf("Welcome to BareMind-shell\n\nType \"help\" for help.\n\n");
+    
+    linenoiseHistoryLoad("hystory.txt");
 
     while (1) {
-        printf("~$: ");
-        fflush(stdout);
-        
-        fgets(input, sizeof(input), stdin);
+        char* input = linenoise("~$: ");
+    
+        linenoiseHistoryAdd(input);
         
         char** tokens = tokenization(input);
 
-        int valid = validation(tokens);
-        if (valid == 1) {
-            router(tokens);
-        }
-        else {
-            if (tokens[0][0] != NULL) {
+        if (tokens[0] != NULL) {
+
+            int valid = validation(tokens);
+            if (valid == 1) {
+                router(tokens);
+            }
+            else {
                 printf("Command not found. Type \"help\" for help.\n");
             }
+            linenoiseHistorySave("hystory.txt");
+            free(input);
+        }
+        else {
+            free(input);
         }
     }
 }
