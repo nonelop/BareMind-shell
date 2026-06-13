@@ -3,8 +3,10 @@
 #include "models_database/models.h"
 #include "shell/tokenization.h"
 #include "utils/help.h"
+#include "shell/linenoise.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int get(char* tokens[], int tokens_count) {
     int operation_successful = 0;
@@ -45,13 +47,14 @@ int get(char* tokens[], int tokens_count) {
                         printf("\n%s\n\n", model->full_name);
                         printf("MODEL SPECIFICATIONS\n[QUANT]: %s\n[SIZE]: %.2f%s\n\n", model->quantization, model_size, size_in);
 
-                        char input_buffer[32];
-                        printf("Are you sure you want to install this model? [y / n] ~$: ");
-                        fflush(stdout);
-                        scanf("%s", input_buffer);
+                        char* input_buffer = linenoise("Are you sure you want to install this model? [y / n] ~$: ");
 
-                        printf("%s\n", input_buffer);
+                        if (!strcmp(input_buffer, "y") || !strcmp(input_buffer, "Y") || !strcmp(input_buffer, "")) {
+                            char command[256];
+                            sprintf(command, "curl -L -o ./models/%s.gguf %s", model->full_name, model->download_url);
 
+                            system(command);
+                        }
                         operation_successful = 1;
                         is_exist = 1;
                     }

@@ -56,3 +56,6 @@ dkms.conf
 
 # engines
 llama.cpp/
+
+hystory.txt
+*.gguf
