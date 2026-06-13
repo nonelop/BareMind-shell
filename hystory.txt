@@ -16,3 +16,4 @@ get qwen-2.5-0.5b
 get qwen-2.5-0.5b
 exit\
 get qwen-2.5-0.5b
+get qwen-2.5-3b
